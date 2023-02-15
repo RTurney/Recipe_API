@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
+import Recipe from './models/recipe.js'
 
 const app = express(); 
 const port = 3000 
@@ -17,12 +18,12 @@ const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'MongoDB connection error'))
 
-const recipeSchema = new Schema({
-    name: String,
-    ingredients: [String],
-})
+// const recipeSchema = new Schema({
+//     name: String,
+//     ingredients: [String],
+// })
 
-const Recipe = mongoose.model('Recipe', recipeSchema)
+// const Recipe = mongoose.model('Recipe', recipeSchema)
 
 // const recipes = [
 //     {name: 'Mash', ingredients: ['potato, butter, milk']},
