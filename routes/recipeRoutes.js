@@ -3,11 +3,9 @@ import Recipe from "../models/recipe.js"
 
 const recipeRouter = router();
 
-recipeRouter.get('/', (req, res) => {
-    Recipe.find((recipes) => {
-        console.log(recipes)
-        res.json(recipes)
-    })
+recipeRouter.get('/', async (req, res) => {
+   const recipes = await Recipe.find()
+   res.json(recipes)
 })
 
 recipeRouter.post('/', (req, res) => {
@@ -21,8 +19,9 @@ recipeRouter.post('/', (req, res) => {
     })
 })
 
-recipeRouter.get('/:id', (req, res) => {
-    res.json(recipes[parseInt(req.params.id) -1 ])
+recipeRouter.get('/:id', async (req, res) => {
+    const recipe = await Recipe.findById(req.params.id)
+    res.json(recipe)
 })
 
 recipeRouter.put('/:id', (req, res) => {
@@ -31,10 +30,15 @@ recipeRouter.put('/:id', (req, res) => {
     })
 })
 
-recipeRouter.delete('/:id', (req, res) => {
-    Recipe.findByIdAndDelete(req.params.id, () => {
-        res.json({ message: `deleted recipe ${req.params.id}` })
-    })
+recipeRouter.delete('/:id', async (req, res) => {
+    const recipe = await Recipe.findById(req.params.id)
+    if(recipe == null) {
+        res.json('No recipe found')
+    } else {
+        Recipe.findByIdAndDelete(req.params.id, () => {
+            res.json({ message: `deleted recipe ${req.params.id}` })
+        })
+    }
 })
 
 export default recipeRouter

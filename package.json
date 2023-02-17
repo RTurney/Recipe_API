@@ -2,7 +2,7 @@
   "name": "node_api_demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -13,7 +13,8 @@
   "dependencies": {
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
-    "mongoose": "^6.9.1"
+    "mongoose": "^6.9.1",
+    "nodemon": "^2.0.20"
   },
   "type": "module"
 }
