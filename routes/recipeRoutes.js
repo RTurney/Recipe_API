@@ -5,13 +5,15 @@ const recipeRouter = router();
 
 recipeRouter.get('/', async (req, res) => {
    const recipes = await Recipe.find()
-   res.json(recipes)
+   res.json({recipes: recipes})
 })
 
 recipeRouter.post('/', (req, res) => {
     const recipe = new Recipe({
         name: req.body.name,
-        ingredients: req.body.ingredients
+        ingredients: req.body.ingredients,
+        imageURL: req.body.imageURL,
+        instructions: req.body.instructions,
     })
 
     recipe.save(() => {

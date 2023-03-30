@@ -21,10 +21,7 @@ app.use(bodyParser.json());
 
 app.use('/recipes', recipeRouter)
 
-// app.get('/', (req, res) => {
-//     res.send('Welcome!')
-// })
-
+// test route
 app.get('/test', (req, res) => {
     Recipe.find((err, recipes) => {
         console.log(recipes)
