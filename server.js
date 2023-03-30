@@ -32,37 +32,6 @@ app.get('/test', (req, res) => {
     })
 })
 
-// app.post('/recipes', (req, res) => {
-//     const recipe = new Recipe({
-//         name: req.body.name,
-//         ingredients: req.body.ingredients
-//     })
-
-//     recipe.save((err) => {
-//         res.json(recipe)
-//     })
-// })
-
-// app.get('/recipes/:id', (req, res) => {
-//     res.json(recipes[parseInt(req.params.id) -1 ])
-// })
-
-// app.put('/recipes/:id', (req, res) => {
-//     Recipe.findByIdAndUpdate(req.params.id, req.body, (err) => {
-//         res.json({ message: `updated recipe ${req.params.id}` })
-//     })
-// })
-
-// app.delete('/recipes/:id', (req, res) => {
-//     Recipe.findByIdAndDelete(req.params.id, (err) => {
-//         res.json({ message: `deleted recipe ${req.params.id}` })
-//     })
-// })
-
-// app.get('/about', (req, res) => {
-//     res.send("What do you want to know?")
-// })
-
 app.listen(port,() => {
     console.log(`listening on port ${port}`,)
 })
