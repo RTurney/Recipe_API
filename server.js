@@ -9,6 +9,7 @@ const app = express();
 const port = 3000 
 
 const mongodb = 'mongodb://localhost:27017/recipe_api'
+mongoose.set('strictQuery', false);
 mongoose.connect(mongodb).then(() => {
     console.log('MongoDB connected!')
 })
@@ -23,10 +24,7 @@ app.use('/recipes', recipeRouter)
 
 // test route
 app.get('/test', (req, res) => {
-    Recipe.find((err, recipes) => {
-        console.log(recipes)
-        res.json(recipes)
-    })
+    res.send("Test response... How did you get here?")
 })
 
 app.listen(port,() => {
