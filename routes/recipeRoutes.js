@@ -1,46 +1,23 @@
 import {Router as router} from 'express'
-import Recipe from "../models/recipe.js"
+
+import {
+    recipeList, 
+    findRecipeById, 
+    postNewRecipe, 
+    updateRecipe, 
+    deleteRecipe
+} from "../controllers/recipeController.js"
 
 const recipeRouter = router();
 
-recipeRouter.get('/', async (req, res) => {
-   const recipes = await Recipe.find()
-   res.json({recipes: recipes})
-})
+recipeRouter.get('/', recipeList);
 
-recipeRouter.post('/', (req, res) => {
-    const recipe = new Recipe({
-        name: req.body.name,
-        ingredients: req.body.ingredients,
-        imageURL: req.body.imageURL,
-        instructions: req.body.instructions,
-    })
+recipeRouter.post('/', postNewRecipe)
 
-    recipe.save(() => {
-        res.json(recipe)
-    })
-})
+recipeRouter.get('/:id', findRecipeById)
 
-recipeRouter.get('/:id', async (req, res) => {
-    const recipe = await Recipe.findById(req.params.id)
-    res.json(recipe)
-})
+recipeRouter.put('/:id', updateRecipe)
 
-recipeRouter.put('/:id', (req, res) => {
-    Recipe.findByIdAndUpdate(req.params.id, req.body, (err) => {
-        res.json({ message: `updated recipe ${req.params.id}` })
-    })
-})
-
-recipeRouter.delete('/:id', async (req, res) => {
-    const recipe = await Recipe.findById(req.params.id)
-    if(recipe == null) {
-        res.json('No recipe found')
-    } else {
-        Recipe.findByIdAndDelete(req.params.id, () => {
-            res.json({ message: `deleted recipe ${req.params.id}` })
-        })
-    }
-})
+recipeRouter.delete('/:id', deleteRecipe)
 
 export default recipeRouter
