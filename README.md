@@ -42,7 +42,8 @@ The best way to currently use and test this project is to use the Postman applic
 - running a PUT request at http://localhost:3000/recipes/[recipe id] will update the specified recipe with the new variables
 - running a DELETE request at http://localhost:3000/recipes/[recipe id] will delete the specified recipe from the database
 
-## Recipe model
+
+## Recipe model
 
 This is the current schema for the recipe model:
 
